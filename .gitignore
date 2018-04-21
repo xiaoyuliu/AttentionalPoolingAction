@@ -9,6 +9,12 @@
 *.h5
 src/expt_outputs/*
 src/data/*
+.idea/
+*.mat
+*.rar
+*.tar*
+*.zip
+*models/
 
 # Custom stuff
 webpages/002_VisAtt2/hmdb_frames
