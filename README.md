@@ -27,6 +27,8 @@ This code was trained and tested with
 
 <span style="background: yellow">[Updated by Xiaoyu Liu]</span>
 
+**My machine is Ubuntu 16.04, Cuda-9.0 and Cudnn 7**
+
 Clone the code and create some directories for outputs
 
 ```bash
