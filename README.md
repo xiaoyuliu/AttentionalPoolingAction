@@ -33,6 +33,7 @@ $ export ROOT=`pwd`/AttentionalPoolingAction
 $ cd $ROOT/src/
 $ mkdir -p expt_outputs data
 $ # compile some custom ops
+$ sudo ldconfig /usr/local/lib/python2.7/dist-packages/tensorflow /usr/local/cuda-9.0/lib64
 $ cd custom_ops; make; cd ..
 ```
 
