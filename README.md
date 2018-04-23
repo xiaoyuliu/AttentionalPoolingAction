@@ -25,6 +25,8 @@ This code was trained and tested with
 
 ## Getting started
 
+<span style="background: yellow">[Updated by Xiaoyu Liu]</span>
+
 Clone the code and create some directories for outputs
 
 ```bash
@@ -35,7 +37,38 @@ $ mkdir -p expt_outputs data
 $ # compile some custom ops
 $ sudo ldconfig /usr/local/lib/python2.7/dist-packages/tensorflow /usr/local/cuda-9.0/lib64
 $ cd custom_ops; make; cd ..
+$ mkdir $ROOT/src/libs && cd $ROOT/src/libs
+$ git clone --recursive git@github.com:ronghanghu/tensorflow_compact_bilinear_pooling.git
+$ # modify the compile.sh
+$ cd tensorflow_compact_bilinear_pooling/sequential_fft/
+$ sh compile.sh 
 ```
+
+Update `tensorflow_compact_bilinear_pooling/sequential_fft/compile.sh` to:
+
+```bash
+#!/usr/bin/env bash
+TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+TF_LIB=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_lib())')
+
+nvcc -std=c++11 -c -o sequential_batch_fft_kernel.cu.o \
+  sequential_batch_fft_kernel.cu.cc \
+  -D_GLIBCXX_USE_CXX11_ABI=0 \
+  -I $TF_INC -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC \
+  -L$TF_LIB -ltensorflow_framework
+
+g++ -std=c++11 -shared -o ./build/sequential_batch_fft.so \
+  sequential_batch_fft_kernel.cu.o \
+  sequential_batch_fft.cc \
+  -D_GLIBCXX_USE_CXX11_ABI=0 \
+  -I $TF_INC -fPIC \
+  -lcudart -lcufft -L/usr/local/cuda/lib64 \
+  -L$TF_LIB -ltensorflow_framework
+
+rm -rf sequential_batch_fft_kernel.cu.o
+```
+
+<span style="background: yellow">[Updated finish]</span>
 
 ## Data setup
 
