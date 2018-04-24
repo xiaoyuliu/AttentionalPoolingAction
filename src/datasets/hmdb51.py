@@ -7,8 +7,8 @@ from __future__ import print_function
 
 from datasets.video_data_utils import gen_dataset
 
-_HMDB51_TRINITY_LIST_DIR = '/data/rgirdhar/Data2/Projects/2016/001_NetVLADVideo/raw/HMDB51/lists/train_test_lists2'
-_HMDB51_TRINITY_POSE_LABEL_DIR = '/scratch/rgirdhar/Datasets/Video/002_HMDB51/processed/features/002_CPM_Pose/'
+_HMDB51_TRINITY_LIST_DIR = '/home/xiaoyu/Documents/action/AttentionalPoolingAction/src/data/hmdb/lists'
+_HMDB51_TRINITY_POSE_LABEL_DIR = '/home/xiaoyu/Documents/action/openpose/output/fall_floor'
 _HMDB51_TRINITY_OBJECTS_LABEL_DIR = '/scratch/rgirdhar/Datasets/Video/002_HMDB51/processed/features/001_YOLO9K_cocoDets_denseFilledIn'
 
 def get_split(split_name, dataset_dir,
@@ -18,7 +18,7 @@ def get_split(split_name, dataset_dir,
               # modality='rgb', num_samples=1,
               # split_id=1, **kwargs):
 
-  _NUM_CLASSES = 51
+  _NUM_CLASSES = 393
   # There are no pose labels, but need to keep this to load models from MPII
   # trained
   # Also, now the processing can still avoided by having no loss on pose

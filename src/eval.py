@@ -5,6 +5,7 @@ from __future__ import division
 from __future__ import print_function
 
 import math
+import time
 import argparse
 import sys
 import tensorflow as tf
@@ -95,7 +96,7 @@ def main():
 
     tf.logging.set_verbosity(tf.logging.INFO)
     with tf.Graph().as_default():
-        tf_global_step = slim.get_or_create_global_step()
+        tf_global_step = tf.train.get_or_create_global_step()
 
         ######################
         # Select the dataset #
@@ -252,6 +253,7 @@ def main():
             end_points_to_save = args.ept + ['logits']
             end_points_to_save = list(set(end_points_to_save))
             all_feats = dict([(ename, []) for ename in end_points_to_save])
+            start_time = time.time()
             with sv.managed_session(
                     '', start_standard_services=False,
                     config=config) as sess:
@@ -264,6 +266,7 @@ def main():
                     all_labels.append(feats[0])
                     for ept_id, ename in enumerate(end_points_to_save):
                         all_feats[ename].append(feats[1][ept_id])
+            print(time.time() - start_time)
             APs = []
             all_labels = np.concatenate(all_labels)
             if args.save or args.ept:

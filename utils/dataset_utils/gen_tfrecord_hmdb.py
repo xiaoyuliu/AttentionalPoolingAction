@@ -19,7 +19,7 @@ import tensorflow as tf
 # Set the following paths
 _MPII_MAT_FILE = '../../datasets/mpii_human_pose_v1_u12_1.mat'
 _IMG_DIR = '/home/xiaoyu/Documents/action/datasets/hmdb51/fall_floor-frame'
-_LABEL_DIR = '/home/xiaoyu/Documents/action/openpose/output'
+_LABEL_DIR = '/home/xiaoyu/Documents/action/openpose/output/fall_floor'
 
 dataset_dir = '../../src/data/hmdb/hmdb_tfrecords/'
 

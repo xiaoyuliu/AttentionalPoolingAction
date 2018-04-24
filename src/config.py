@@ -140,7 +140,7 @@ __C.TEST = edict()
 
 __C.TEST.BATCH_SIZE = 10
 
-__C.TEST.DATASET_SPLIT_NAME = 'trainval_val'
+__C.TEST.DATASET_SPLIT_NAME = 'test'
 
 __C.TEST.MAX_NUM_BATCHES = None
 

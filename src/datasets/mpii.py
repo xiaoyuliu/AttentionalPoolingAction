@@ -12,7 +12,7 @@ _FILE_PATTERN = 'mpii_%s_*.tfrecord'
 
 SPLITS_TO_SIZES = {'trainval_train': 8219, 'trainval_val': 6988,
                    'trainval': 15207,  # 8219 + 6988
-                   'test': 5709}
+                   'test': 7680}
 
 _NUM_CLASSES = 393  # activities
 
